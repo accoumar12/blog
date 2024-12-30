@@ -8,11 +8,13 @@ tags:
 banner: ./similar-pieces.png
 ---
 
+![3d-similarity](./similar-pieces.png)
+
 ## Introduction
 
-The main goal here is to create a 3D similarity model that compares Computer-Aided Designs (CAD) based on their geometry. This is crucial for managing huge CAD repositories, where finding khe right design quickly can save time and spark new ideas.
+The main goal here is to create a 3D similarity model that compares Computer-Aided Designs (CAD) based on their geometry. This is crucial for managing huge CAD repositories, where finding the right design quickly can save time and spark new ideas.
 
-Tired of classical manual classification? This model uses a self-supervised, contrastive learning approach to handle smaller labeled datasets. A custom “Tinder-like” application was built to gather labeled triplets for the training process.
+One major challenge is the scarcity of labeled data and the difficulty of assigning labels to CAD parts. Different manufacturers may refer to something like a screw under various names, and conventions can differ greatly. That’s why a shape-based similarity model is essential. A custom “Tinder-like” application was built to gather labeled triplets for the training process.
 
 ## Method
 
@@ -24,7 +26,9 @@ This process updates iteratively: train an initial model, generate triplets, get
 
 Tests used 20,000 triplets and compared Graph Neural Networks (like EdgeConv) with Transformer-based models (like OpenShape). Key techniques included converting CAD meshes into graphs or point clouds, plus data augmentation (e.g., random rotations).
 
-The Transformer models ended up outperforming the GNNs, showing better accuracy and improved rotation invariance. Visual checks with t-SNE plots confirmed that the embeddings grouped similar designs, though human judgment was still essential.
+The Transformer models ended up outperforming the GNNs, showing better accuracy and improved rotation invariance. Visual checks with t-SNE plots confirmed that the embeddings grouped similar designs, though human judgment was still essential through the app.
+
+![tsne](./clusters_tsne.png)
 
 ## Conclusion
 
