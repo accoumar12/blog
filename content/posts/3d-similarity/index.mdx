@@ -1,0 +1,33 @@
+---
+title: Building a 3D similarity model for CAD designs
+date: 2024-12-30
+description: A summary of my master thesis where I built a 3D similarity model tailored for CAD designs.
+tags:
+  - ML
+  - 3D
+banner: ./similar-pieces.png
+---
+
+## Introduction
+
+The main goal here is to create a 3D similarity model that compares Computer-Aided Designs (CAD) based on their geometry. This is crucial for managing huge CAD repositories, where finding khe right design quickly can save time and spark new ideas.
+
+Tired of classical manual classification? This model uses a self-supervised, contrastive learning approach to handle smaller labeled datasets. A custom “Tinder-like” application was built to gather labeled triplets for the training process.
+
+## Method
+
+The overall approach starts with collecting triplets through the user-friendly labeling app. Users pick which design is more similar to an anchor design, helping the model learn how to group similar shapes. The model uses triplet loss so that similar items end up close together in the embedding space, and very different ones stay apart.
+
+This process updates iteratively: train an initial model, generate triplets, get them labeled, retrain the model, and repeat. Over time, it hones in on more challenging triplets, improving accuracy with limited labeled data.
+
+## Experiments
+
+Tests used 20,000 triplets and compared Graph Neural Networks (like EdgeConv) with Transformer-based models (like OpenShape). Key techniques included converting CAD meshes into graphs or point clouds, plus data augmentation (e.g., random rotations).
+
+The Transformer models ended up outperforming the GNNs, showing better accuracy and improved rotation invariance. Visual checks with t-SNE plots confirmed that the embeddings grouped similar designs, though human judgment was still essential.
+
+## Conclusion
+
+This work tackles 3D design comparison in settings with massive CAD libraries and little labeled data. The best results came from an iterative method combining novel triplet generation, a labeling tool, and deep learning on 3D repos. Immediate applications include automated design optimization and CAD integration for suggesting improvements. 
+
+For more details about this work, check out [the full report](https://github.com/accoumar12/report-d3s/blob/main/main.pdf) or [contact me](https://maccou-portfolio.netlify.app/#contact) !
