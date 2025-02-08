@@ -7,6 +7,7 @@ tags:
   - DL 
   - 3D 
   - instance segmentation
+banner: ./sheet_metal_0.png
 ---
 import sheetMetal0 from './sheet_metal_0.png';
 import sheetMetal1 from './sheet_metal_1.png';
@@ -14,63 +15,82 @@ import holes0 from './holes_0.png';
 import holes1 from './holes_1.png';
 
 <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-  <div style={{ 
-    display: 'grid', 
-    gridTemplateColumns: 'repeat(2, 1fr)', 
-    gap: '2rem',
-    background: '#f5f5f5',
-    padding: '2rem',
-    borderRadius: '8px'
-  }}>
-    <div style={{ height: '300px', backgroundColor: 'white', padding: '1rem', borderRadius: '4px' }}>
-      <img 
-        src={sheetMetal0} 
-        alt="3d-segmentation" 
-        style={{ 
-          width: '100%', 
-          height: '100%', 
-          objectFit: 'contain',
-        }}
-      />
+  <figure style={{ margin: 0, marginBottom: '2rem' }}>
+    <div style={{ 
+      display: 'grid', 
+      gridTemplateColumns: 'repeat(2, 1fr)', 
+      gap: '2rem',
+      background: '#f5f5f5',
+      padding: '2rem',
+      borderRadius: '8px',
+      marginBottom: '1rem'
+    }}>
+      <div style={{ height: '300px', backgroundColor: 'white', padding: '1rem', borderRadius: '4px' }}>
+        <img src={holes0} alt="3d-segmentation" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      </div>
+      <div style={{ height: '300px', backgroundColor: 'white', padding: '1rem', borderRadius: '4px' }}>
+        <img src={holes1} alt="3d-segmentation" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      </div>
     </div>
-    <div style={{ height: '300px', backgroundColor: 'white', padding: '1rem', borderRadius: '4px' }}>
-      <img 
-        src={sheetMetal1} 
-        alt="3d-segmentation" 
-        style={{ 
-          width: '100%', 
-          height: '100%', 
-          objectFit: 'contain',
-        }}
-      />
+    <figcaption style={{ textAlign: 'center', color: 'white', fontSize: '0.9em' }}>
+      Holes part segmentation. Distinct holes are colored differently.
+    </figcaption>
+  </figure>
+
+  <figure style={{ margin: 0 }}>
+    <div style={{ 
+      display: 'grid', 
+      gridTemplateColumns: 'repeat(2, 1fr)', 
+      gap: '2rem',
+      background: '#f5f5f5',
+      padding: '2rem',
+      borderRadius: '8px',
+      marginBottom: '1rem'
+    }}>
+      <div style={{ height: '300px', backgroundColor: 'white', padding: '1rem', borderRadius: '4px' }}>
+        <img src={sheetMetal0} alt="3d-segmentation" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      </div>
+      <div style={{ height: '300px', backgroundColor: 'white', padding: '1rem', borderRadius: '4px' }}>
+        <img src={sheetMetal1} alt="3d-segmentation" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      </div>
     </div>
-    <div style={{ height: '300px', backgroundColor: 'white', padding: '1rem', borderRadius: '4px' }}>
-      <img 
-        src={holes0} 
-        alt="3d-segmentation" 
-        style={{ 
-          width: '100%', 
-          height: '100%', 
-          objectFit: 'contain',
-        }}
-      />
-    </div>
-    <div style={{ height: '300px', backgroundColor: 'white', padding: '1rem', borderRadius: '4px' }}>
-      <img 
-        src={holes1} 
-        alt="3d-segmentation" 
-        style={{ 
-          width: '100%', 
-          height: '100%', 
-          objectFit: 'contain',
-        }}
-      />
-    </div>
-  </div>
+    <figcaption style={{ textAlign: 'center', color: 'white', fontSize: '0.9em' }}>
+      [Sheet metal](https://en.wikipedia.org/wiki/Sheet_metal) part segmentation. The recto (red), verso (green) and deburring (yellow) parts are colored.
+    </figcaption>
+  </figure>
 </div>
 
 ## Introduction
 
+At [D3S](https://d3s.ai/), we're developing **cost estimation models** for [Computer-Aided Design (CAD)](https://en.wikipedia.org/wiki/Computer-aided_design) manufacturing. A crucial part of this process is automatically identifying and measuring design features that drive manufacturing costs - like holes, bends, and surface areas. For [sheet metal](https://en.wikipedia.org/wiki/Sheet_metal) designs in particular, accurate segmentation enables automated unfolding and [nesting](https://en.wikipedia.org/wiki/Nesting_(process)) calculations, essential for material cost estimation.
+
+Unlike 3D similarity tasks where pre-trained models often perform well, segmentation requires specialized approaches that understand manufacturing context. The challenge lies in precisely identifying every feature while maintaining robustness across diverse design variations.
+
 ## Method
 
+The development process involved testing multiple approaches before finding an optimal solution:
+
+1. **Semantic Segmentation Exploration**:
+   - [Mask3D](https://arxiv.org/abs/2210.03105), [PointSAM](https://arxiv.org/abs/2406.17741), and [PTv3](https://arxiv.org/abs/2312.10035) were tested.
+   - PTv3 was the most successful but lacked native instance segmentation capabilities.
+
+2. **Evolution to Instance Segmentation**:
+   - Implemented [PointGroup](https://arxiv.org/abs/2004.01658) with PTv3 backbone.
+   - Advanced and sticked to [OneFormer3D](https://arxiv.org/abs/2311.14405) with internal CAD-specific adaptations.
+
+## Experiments
+
+Our experimental process revealed three key insights:
+
+- **CAD-specific adaptations are crucial for effective instance segmentation**. Notably, CAD 3D designs do not have color information, so we used point normals instead.
+- **Dataset curations are essential**. Various curations techniques were implemented to ensure robustness across diverse designs. The model also needs a minimum amount of training data to generalize well (~ more than 1000 designs).
+- Such 3D instance segmentation methods, initially aimed for outdoor and indoor scenes, **can be effectively adapted to CAD designs part segmentation**.
+
+
 ## Conclusion
+
+This work demonstrates the **effectiveness of current SOTA 3D instance segmentation models for 3D CAD part segmentation**. Our OneFormer3D adaptation, using point normals instead of colors, achieves robust results even with modest training data. This makes the solution particularly valuable for industrial applications where labeled data is scarce.
+
+The model's success in identifying features enables automated cost estimation and manufacturing planning, providing practical value in real-world manufacturing workflows.
+
+For technical details, feel free to [contact me](https://maccou-portfolio.netlify.app/#contact)!
