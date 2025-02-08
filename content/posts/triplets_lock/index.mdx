@@ -12,7 +12,7 @@ tags:
 
 During my master's thesis, I developed a "Tinder-like" application where users swiped left or right to select the piece most similar to the one in the center. This application was essential to build a labeled triplet dataset for training a 3d similarity model with a triplet loss. 
 
-One of the critical aspect of the app was to handle the labeling of a triplet by a given user. The labeling process had to follow this fundamental locking property:
+**One of the critical aspect of the app was to handle the labeling of a triplet by a given user**. The labeling process had to follow this fundamental locking property:
 
 > Each triplet needed to be labeled only once, meaning a labeled triplet should not be presented to another user.
 
@@ -22,7 +22,7 @@ Without using any advanced database mechanisms, the initial solution involved ad
 
 While this approach ensures that a triplet is not presented to more than one user, it is not perfect. It does not account for situations where a user disconnects or logs out before labeling the triplet, leaving it unlabeled. These scenarios are referred to as *edge cases*.
 
-To handle such situations, a timeout value was introduced. If a triplet remains in the labeling process for longer than the timeout period, it is considered an *edge case*, and the triplet is returned to the unlabeled triplets group.
+To handle such situations, **a timeout value was introduced**. If a triplet remains in the labeling process for longer than the timeout period, it is considered an *edge case*, and the triplet is returned to the unlabeled triplets group.
 
 ```python
 def get_first_unlabeled_triplet(
