@@ -1,0 +1,43 @@
+---
+title: Why I use git worktrees
+date: 2025-02-22
+description: Why I use git worktrees
+tags:
+  - learning
+  - git
+---
+
+I recently started using git worktrees after discovering the best practices outlined in [this article](https://matklad.github.io/2024/07/25/git-worktrees.html). Initially, I was uncertain about the true benefits of worktrees compared to simply cloning a repository into multiple folders. Frustrated by the lack of clear online explanations, I decided to write this article to share my findings.
+
+## Why Use Multiple Clones Instead of Constantly Switching Branches?
+
+There are several advantages to maintaining multiple copies of your repository:
+
+- **Running Long Test Suites / Long Runs:**  
+  Imagine you have two test configurations that need to run concurrently. If you switch branches between tests, there's a risk of accidentally overwriting output files. By using separate worktrees, you ensure that each test run remains isolated and safe from unintended interference. Better safe than sorry!
+
+- **Distinct Environment Configurations:**  
+  It’s often necessary to test different environment settings without the hassle of constantly modifying a single configuration file. For example, you might have one worktree where caching is enabled and another where it isn’t. This separation simplifies testing and avoids the risk of mixing configurations.
+
+- **Enhanced Diffing Capabilities:**  
+  With multiple copies available, you’re not limited to Git's diffing tools. You can leverage your preferred diff utilities, which might offer a more comprehensive or user-friendly comparison experience.
+
+## Why Use Git Worktrees instead of Multiple Clones?
+
+Git worktrees also offer benefits over having multiple cloned repositories—advantages that are sometimes overlooked:
+
+- **Effortless Commit Sharing:**  
+  When you work offline (say, while commuting on a train) and make a commit on one branch, you might later want to integrate that commit into another branch. With worktrees, you can easily cherry-pick changes **without having to push or fetch from a remote repository**.
+
+- **Efficient Use of Disk Space:**  
+  Since all worktrees share the same Git history, you avoid the redundancy of duplicating that history across multiple repositories. This not only saves disk space but also streamlines repository management.
+
+## Conclusion
+
+My advice is simple:
+
+- **Embrace Git Worktrees:** They offer a powerful and efficient alternative to managing multiple branches or clones.
+- **Follow Proven Workflows:** Check out [this article](https://matklad.github.io/2024/07/25/git-worktrees.html) for exceptional workflow guidelines.
+- **Consider Naming Conventions:** Suffix your repository with `.git` to clearly indicate that it is a bare repository (for example, `my_repo.git`).
+
+Happy coding!
