@@ -7,7 +7,13 @@ tags:
   - git
 ---
 
+> **TL;DR:**
+> - Git worktrees let you work on multiple branches simultaneously without constantly switching.
+> - They provide isolation for test environments and configurations.
+> - Unlike multiple clones, worktrees allow easy commit sharing between branches without pushing to remote, and are more disk-space efficient.
+
 I recently started using git worktrees after discovering the best practices outlined in [this article](https://matklad.github.io/2024/07/25/git-worktrees.html). Initially, I was uncertain about the true benefits of worktrees compared to simply cloning a repository into multiple folders. Frustrated by the lack of clear online explanations, I decided to write this article to share my findings.
+
 
 ## Why Use Multiple Clones Instead of Constantly Switching Branches?
 

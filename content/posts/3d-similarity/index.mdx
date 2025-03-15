@@ -10,9 +10,13 @@ tags:
 banner: ./similar-pieces.png
 ---
 
-![3d-similarity](./similar-pieces.png)
+> **TL;DR:**
+> - Built a 3D similarity model for comparing CAD designs based on geometry despite limited labeled data, by fine-tuning a Transformer backbone.
+> - Developed a "Tinder-like" app to gather human-labeled triplets for training with triplet loss.
+> - Transformer-based models outperformed Graph Neural Networks, showing better accuracy and rotation invariance.
+> - The iterative approach combining triplet generation, labeling, and retraining yields effective embeddings for design comparison.
 
-## Introduction
+![3d-similarity](./similar-pieces.png)
 
 The main goal here is to create a 3D similarity model that compares [Computer-Aided Designs (CAD)](https://en.wikipedia.org/wiki/Computer-aided_design) based on their geometry. This is crucial for managing huge CAD repositories, where finding the right design quickly can save time and spark new ideas.
 

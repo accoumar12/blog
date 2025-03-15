@@ -14,6 +14,11 @@ import sheetMetal1 from './sheet_metal_1.png';
 import holes0 from './holes_0.png';
 import holes1 from './holes_1.png';
 
+> **TL;DR:**
+> - Built a 3D instance segmentation model, crucial for automated cost estimation in CAD manufacturing.
+> - Adapted OneFormer3D for CAD designs, using point normals instead of color information.
+> - The approach achieves robust segmentation with minimal training data, making it viable for industrial applications.
+
 <div style={{ maxWidth: '900px', margin: '0 auto' }}>
   <figure style={{ margin: 0, marginBottom: '2rem' }}>
     <div style={{ 
@@ -59,8 +64,6 @@ import holes1 from './holes_1.png';
     </figcaption>
   </figure>
 </div>
-
-## Introduction
 
 At [D3S](https://d3s.ai/), we're developing **cost estimation models** for [Computer-Aided Design (CAD)](https://en.wikipedia.org/wiki/Computer-aided_design) manufacturing. A crucial part of this process is automatically identifying and measuring design features that drive manufacturing costs - like holes, bends, and surface areas. For [sheet metal](https://en.wikipedia.org/wiki/Sheet_metal) designs in particular, accurate segmentation enables automated unfolding and [nesting](https://en.wikipedia.org/wiki/Nesting_(process)) calculations, essential for material cost estimation.
 
