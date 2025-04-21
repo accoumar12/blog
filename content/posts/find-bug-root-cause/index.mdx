@@ -1,6 +1,6 @@
 ---
 title: Finding the root cause of bugs
-date: 2023-12-20
+date: 2025-04-21
 description: A systematic approach to track down and solve complex software bugs.
 tags:
   - software
@@ -46,7 +46,7 @@ Assign each cause a probability of being the root cause. This helps prioritize w
 
 Here is an example of a hypothesis tree for a bug I encountered, where different models extracted various drivers (like the number of holes or area) with discrepancies between the platform and our 3D analytics library:
 
-[example](./debug-decision-tree.png)
+![debug-decision-tree](./debug-decision-tree.png)
 
 For each potential cause, define a concrete method to evaluate it. Sometimes, a single test can evaluate multiple causes simultaneously. For example, in the tree above, Cause 1 and Cause 3 can be evaluated by running a test script directly with the Docker image on the platform server.
 
