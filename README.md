@@ -3,8 +3,6 @@
 ## Development
 
 ``` bash
-$ npm run install
-$ npm run develop
+npm install
+npm run develop
 ```
-
-
