@@ -1,9 +1,66 @@
 ---
 title: My terminal tips
 date: 2025-07-05
-description: A collection of terminal tips.
+description: A curated list of terminal tips that streamline my development workflow.
 tags:
   - terminal
   - productivity
 ---
 
+> **TL;DR:**
+> * 💡 Learn from others — blog posts and videos are goldmines of inspiration;
+> * 🧘‍♂️ Once your setup feels right, stop over-optimizing and focus on building.
+
+Over the years, I’ve explored many terminal setups, driven by curiosity and inspired by other developers’ workflows. Eventually, I landed on a configuration that just works for me — minimal, efficient, and portable. This post is a jumble of terminal tips that have significantly improved my daily development experience.
+
+## Use zoxide ⚡
+
+[zoxide](https://github.com/ajeetdsouza/zoxide) is a smarter `cd`. It remembers your most-used directories and allows you to jump between them without typing full paths. I first discovered it through [Dreams of Autonomy](https://www.youtube.com/watch?v=aghxkpyRVDY&t=4s), and it’s been a game-changer.
+
+Instead of typing:
+
+```bash
+cd ~/projects/work/client-a/sandbox/legacy/scripts
+```
+
+You can just type:
+
+```bash
+z legacy
+```
+
+...and you're there. It removes friction from daily navigation and keeps your hands on the keyboard.
+
+## Use tmux 🪟
+
+This might seem obvious, but **if you're not using [tmux](https://github.com/tmux/tmux)**, start today. The ability to organize your workflow into persistent sessions and panes is invaluable — especially when working on remote servers or juggling multiple tasks.
+
+## Use a plugin manager for Zsh 🧩
+
+Avoid big, bloated Zsh frameworks like [Oh My Zsh](https://ohmyz.sh/) if you only need a few plugins. They often introduce unnecessary overhead and slow down your shell startup.
+
+Instead, go with a lightweight plugin manager like [zinit](https://github.com/zdharma-continuum/zinit), which gives you full control over what’s loaded — and when. Your terminal will be faster and more predictable.
+
+## Store your config in a dotfiles repo 📁
+
+Switching machines can be painful — unless your config lives in a portable dotfiles setup. I keep all my terminal-related configs (Zsh, tmux, git, aliases, etc.) in a [dotfiles repo](https://github.com/accoumar12/dotfiles).
+
+I use [`stow`](https://www.youtube.com/watch?v=y6XCebnB9gs&t=99s) to manage the symlinks, and I can bootstrap a fresh machine by simply running my [install script](https://github.com/accoumar12/dotfiles/blob/main/setup/install.sh). The setup becomes reproducible and version-controlled.
+
+## Mirror your filesystem structure across machines 🪞
+
+When working across multiple environments (local, server, cloud, etc.), **keeping a consistent directory structure** pays off. It reduces cognitive load and allows you to reuse scripts and workflows seamlessly.
+
+For example, I have a few utility commands (defined in my [`.justfile`](https://github.com/accoumar12/dotfiles/blob/main/.justfile)) that rely on the mirrored structure. One of them, `just sync`, lets me quickly sync code between a server and my local machine. It’s fast, reliable, and avoids configuration drift.
+
+## Setup once, then stop tweaking 🛑
+
+The biggest productivity killer? Constantly switching tools and endlessly tweaking your setup.
+
+Choose your tools with intention. Once you’re happy with your workflow, **stop tinkering and start shipping**. Explore new ideas occasionally, but resist the urge to constantly reinvent your environment. That energy is better spent building things.
+
+## Conclusion 🚀
+
+Your terminal is your cockpit — make it fast, familiar, and dependable. Borrow good ideas from others, but ultimately, build a system that fits your needs. Once you’re there, **trust it, use it, and move on to the real work**.
+
+If you have a favorite terminal tip that’s been a game-changer, I’d love to hear it!
