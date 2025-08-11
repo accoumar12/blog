@@ -61,11 +61,10 @@ For each cause, start deep diving into the code. Your best tools here are the de
 2. **The logger** 📊: Excels when you have good metrics to track. In one case where topology visualization appeared in different locations, logging the centroid coordinates helped me pinpoint exactly when and why the shift occurred.
 Additionally, you can take a creative approach to logging. For example, while working on a 3D analytics library in Python, we implemented a system that automatically captured 3D visualizations during function execution. This was achieved using a decorator called `displayable` applied to key functions. The workflow made it easy to track changes over time in a visual format. Instead of digging through complex and often unclear textual logs, we could simply run two instances side by side and visually identify where the differences occurred.
 
+3. **Domain-specific tools**:  Each domain can have its own best practices for debugging. For example, working with 3D CAD data requires a different approach than debugging web applications or backend services. **Understanding the domain and the tools available is crucial**.
 As I am a big fan of mental decision tree. Here is the one I apply when working with 3D CAD data.
 
 ![plots-decision-tree](./plots-decision-tree.png)
-
-**Choose the right tool for the job**: If you have a clear metric to monitor, logging is often more efficient. For complex state issues, the debugger provides more insight.
 
 ## Conclusion 🏁
 
