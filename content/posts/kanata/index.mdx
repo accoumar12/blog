@@ -8,21 +8,21 @@ tags:
 ---
 
 > **TL;DR:**
-- Nerds among you will know [QMK](https://docs.qmk.fm/). QMK allows the user to customize the functionality of their keyboard to their heart's content. Kanata aims to provide such features but for any keyboard, not just fancy mechanical ones.
-- My config allows to never have to move his hand from the home row. This dramatically increases the comfort when using the keyboard.
+> * ⌨️ [Kanata](https://github.com/jtroo/kanata) brings QMK-like keyboard customization to any keyboard, not just mechanical ones;
+> * 🏠 Home row mods keep your hands positioned optimally while accessing modifier keys;
+> * 🎯 Never leave the home row — dramatically improves typing comfort and efficiency.
 
-
-[Kanata](https://github.com/jtroo/kanata) is an incredible tool that allows you to customize your keyboard layout, making it more efficient and comfortable to use. It is inspired by [QMK](https://docs.qmk.fm/), a popular firmware for mechanical keyboards, but extends its capabilities to any keyboard. I will share my personal configuration and how it has improved my typing experience. 
+[Kanata](https://github.com/jtroo/kanata) is an incredible **cross-platform** tool that allows you to customize your keyboard layout, making it more efficient and comfortable to use. It is inspired by [QMK](https://docs.qmk.fm/), a popular firmware for mechanical keyboards, but extends its capabilities to any keyboard. I will share my personal configuration and how it has improved my typing experience. 
 
 [The configuration guide](https://github.com/jtroo/kanata/blob/main/docs/config.adoc), whilst comprehensive, can be a bit overwhelming at first. I highly recommend [this getting started](https://shom.dev/start/using-kanata-to-remap-any-keyboard/) that provides a more beginner-friendly introduction to Kanata.
 
 ## Main objectives 🎯
 
-- A common remap for vim users is to remap caps lock to escape. 
+- A common remap for vim users is to remap caps lock to escape. Indeed, escape is heavily used in vim, and the caps lock key is rarely used. So remapping it to escape makes a lot of sense.
 - Reaching keys such as 'Ctrl' or 'Alt' is really uncomfortable. [Home row mods](https://precondition.github.io/home-row-mods) allow you to use these modifier keys without moving your fingers from the home row. So I wanted this functionality in my layout.
 - Arrow keys are often really interesting when using some tools. For example, when vim is not possible (like when editing a google doc or so), left and right arrows are really useful to navigate the text. So I wanted to have them available without moving my hands.
 
-## Caps lock remapping
+## Caps lock remapping ⌨️
 
 Here are snippets of my kanata configuration file. The whole configuration file can be found [here](https://github.com/accoumar12/dotfiles/blob/main/.config/kanata/kanata.kbd).
 ```
@@ -38,7 +38,7 @@ esc (tap-hold $tap-time $hold-time esc (layer-toggle nav))
 
 Now, when I press the caps lock key, it acts as an escape key.
 
-## Home row mods
+## Home row mods 🏠
 
 ```
 ;; Home row mods: when the key is tapped, it sends the letter, when held, it sends a modifier.
@@ -54,7 +54,7 @@ l (tap-hold $tap-time $hold-time l ralt)
 
 Now, when I press `a`, it types `a`. But when I hold it, it acts as the `left meta` key. The same applies for the other keys.
 
-## Navigation layer
+## Navigation layer 🧭
 
 ```
 ;; Util layer to be able to use vim-like access to arrows.
@@ -65,10 +65,10 @@ Now, when I press `a`, it types `a`. But when I hold it, it acts as the `left me
 
 When I hold the caps lock key, I switch to the `nav` layer. In this layer, I can use `h`, `j`, `k`, and `l` to navigate left, down, up, and right respectively.
 
-## Conclusion
+## Conclusion 🚀
 
-Kanata is a powerful tool that can significantly enhance your typing experience. By customizing your keyboard layout, you can improve your efficiency and comfort. 
+Kanata transforms any keyboard into a productivity powerhouse. By keeping your hands on the home row while accessing essential keys like escape, modifiers, and arrows, you'll type more comfortably and efficiently.
 
-My configuration allows me to keep my hands on the home row while still having access to essential keys like escape, control, alt, and arrow keys. My full configuration can be found [here](https://github.com/accoumar12/dotfiles/blob/main/.config/kanata/kanata.kbd). 
+My full configuration is available [here](https://github.com/accoumar12/dotfiles/blob/main/.config/kanata/kanata.kbd). Start with these basics, adapt them to your workflow, and **stop tweaking once it feels right**.
 
-I encourage you to explore Kanata and create a layout that suits your needs! 
+Your fingers will thank you!
