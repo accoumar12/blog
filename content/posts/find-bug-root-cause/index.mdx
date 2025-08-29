@@ -23,13 +23,15 @@ Finding the root cause of complex bugs can be a frustrating experience. Recently
 
 A common mistake is jumping into debugging without confirming we can reproduce the problem. This leads to wasted time and incorrect assumptions about the bug's nature.
 
+Once you have a reproducible case, simplify it as much as possible. Eliminating all the irrelevant noise often sheds light on the real cause. This case should also be easily iterable, allowing for quick tests and modifications.
+
 ### 2. Identify when it worked (for regressions) ⏱️
 
 If dealing with a regression bug (something that used to work but now doesn't):
 
 - Find the last commit where the functionality worked correctly;
 - Use [git bisect](https://git-scm.com/docs/git-bisect) to efficiently identify the exact commit that introduced the bug;
-- If bisecting isn't possible, carefully compare the behavior between working and broken versions to understand what changed.
+- If bisecting isn't possible with tests, manually check out commits to find the breaking point.
 
 ### 3. Pay Attention to Error Messages 📝
 
