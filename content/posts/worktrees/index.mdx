@@ -23,7 +23,7 @@ There are several advantages to maintaining multiple copies of your repository:
   Imagine you have two test configurations that need to run concurrently. If you switch branches between tests, there's a risk of accidentally overwriting output files. By using separate worktrees, you ensure that each test run remains isolated and safe from unintended interference. Better safe than sorry!
 
 - **🌐 Distinct Environment Configurations:**  
-  It’s often necessary to test different environment settings without the hassle of constantly modifying a single configuration file. For example, you might have one worktree where caching is enabled and another where it isn’t. This separation simplifies testing and avoids the risk of mixing configurations.
+  It’s often necessary to test different environment settings without the hassle of constantly modifying a single configuration file. For example, you might have one worktree where caching is enabled and another where it isn’t. This separation simplifies testing and avoids the risk of mixing configurations. Moreover, you can start a debugger session in each clone to compare their behavior side by side. This wouldn’t be possible if you were just switching branches within the same folder.
 
 - **📊 Enhanced Diffing Capabilities:**  
   With multiple copies available, you’re not limited to Git's diffing tools. You can leverage your preferred diff utilities, which might offer a more comprehensive or user-friendly comparison experience.
