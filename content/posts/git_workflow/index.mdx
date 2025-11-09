@@ -38,19 +38,27 @@ A few ones that I use the most:
 
 ## Configure nicely you git with .gitconfig
 
+Git default are not the best. So you can [take inspiration](https://blog.gitbutler.com/how-git-core-devs-configure-git) from git pro users to have a bette experience. Feel free to have a look at my own [.gitconfig](https://github.com/accoumar12/dotfiles/blob/main/.gitconfig) for inspiration!
+
 ## Use git worktrees
 
-You should use git worktrees, unless having a really good reason not to. I explained in details why in [this article].
+You should use git worktrees, unless having a really good reason not to. I explained in details why in [this article](https://maccou-blog.netlify.app/why-i-use-git-worktrees/).
 
 ## Do not use stashes for pointing towards code with some meaning
 
 You're developing a new feature but you need to go back working on another branch?
 Please do not use a stash, even with a meaningful name. Just use branches. They are made for this.
 
-You're developing 
-Stashes are the best way to lose track of any important information
+Stashes are the best way to lose track of any important information. You can use as much branches as you want so do not hesitate!
 
 ## Adopt a clear branching strategy
 
 I personnaly like the PR based workflow. You have a main branch, and committing directly to it is forbidden. You create feature branches from main, and when the feature is done, you open a PR to merge it back to main. CI runs on each PR to ensure that everything is fine before merging.
 Also adopt squash merging, so you do not really care about the history of your feature branch! Also, while each commit on a feature branch does not need to be perfect. The PR should follow the [perfect commit](https://simonwillison.net/2022/Oct/29/the-perfect-commit/) rules. So each PR should include implementation, tests, documentation, and link to an issue thread, and also you can have a template for this issue thread. I highly recommend using the feature that creates a branch from an issue directly, like on giehub. 
+
+## Really don't overcomplicate your commit history when developing a feature
+
+I see many pp lose a lot of time trying to have a perfect commit history from the start. In a squashed merge worfkow, this is not really needed because all the commits will get squashed together when the pr is merged. Even if you aim at having a clear commit history at the end (for example with a big MR qwhere you do no want to delete the history, even if such a case shoould not happend because a big issue should be split into multiple subissues), you should really not care about what you re committing. When yuo re totally done for that branch, you call `reset --soft <commit-hash-where-you-started>`, and then successifvly choose you different commits, and using a tool such as [magit](TODO) really helps there. You can even select chunk of a given file for a speicic commit! Again, this worflow was heavily inspired from [maktlab](TODO).
+you should really see 2 different mind approachs to you commit history:
+- either it is in the dev phase, this commit hisotyr will not stay like this after the feature is merged, so take it just as an organisation field for you, you do not need to detail everything, and you can stay really fuzzy
+- either the history is expected to be kept after, In this case do not see the commit history as an help for yourself but rather for anyone. It is totally different and requires more thinking and exhaustiveness. Again, such an effort should not be needed with the squashed merging strategy!
