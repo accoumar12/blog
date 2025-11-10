@@ -1,0 +1,97 @@
+---
+title: My git workflow
+date: 2025-11-07
+description: My git workflow for organizing and managing code changes effectively.
+tags:
+  - learning
+  - git
+  - productivity
+---
+
+> **TL;DR:**
+> - 💻 Use Git CLI over GUI tools for deeper understanding and flexibility.
+> - ⚡ Leverage terminal aliases to speed up common operations.
+> - 🌳 Use git worktrees for multi-branch workflows.
+> - 🚫 Never use stashes for meaningful work—use branches instead.
+> - 📦 Adopt squash merging with a PR-based workflow.
+> - ✨ Don't obsess over commit history during development—clean it up later.
+
+[Git](https://git-scm.com/) is a fundamental tool for any developer. Over time, I've seen many different workflows and strategies, and I've noticed that bad habits can waste significant time. This article lays out my approach to using Git effectively.
+
+I'm particularly frustrated by the amount of poor Git advice online. A classic example: using `git stash` to temporarily save work when switching branches. This is problematic because stashes are easy to forget and you lose track of context. I'll explain a better approach below.
+
+## 💻 Use Git CLI as Your Primary Tool
+
+Many developers rely heavily on visual interfaces for every Git operation, including adding and committing. This isn't ideal because:
+
+- **🐛 GUI Bugs:** Visual tools can have bugs (looking at you, [Sublime Merge](https://www.sublimemerge.com/)).
+- **🎭 Abstraction Layer:** GUIs just run CLI commands under the hood anyway.
+- **📚 Deeper Understanding:** Using the CLI helps you truly understand Git.
+- **🔧 More Power:** CLI gives access to powerful customizations and aliases.
+
+That said, visual tools have their place. I use VSCode's interface for merge conflicts and the [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) extension for deep history exploration. For quick lookups, `git log` is sufficient.
+
+## ⚡ Use Terminal Aliases to Speed Up Your Workflow
+
+**Objection:** "But typing `git add` and `git commit -m` every time is so slow! GUIs are faster!"
+
+**Solution:** Use Git aliases. I highly recommend the [zsh git plugin](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git).
+
+My most-used aliases:
+
+- **`gac`** = `git add -A; git commit -m "$1"` — Add all changes and commit with a message.
+- **`gst`** = `git status` — Show Git status.
+- **`gwip`** = Work-in-progress commit — Adds everything and commits with `--wip-- [skip ci]`. This is **much better than `git stash`**. How many times have you forgotten to reapply a stash? Plus, the `[skip ci]` pattern is recognized by most CI systems (like GitHub) and skips unnecessary builds.
+
+## ⚙️ Configure Git Properly with .gitconfig
+
+Git's defaults aren't optimal. Take inspiration from [how Git core developers configure Git](https://blog.gitbutler.com/how-git-core-devs-configure-git). Feel free to check out my [.gitconfig](https://github.com/accoumar12/dotfiles/blob/main/.gitconfig) for ideas!
+
+## 🌳 Use Git Worktrees
+
+You should use git worktrees unless you have a compelling reason not to. I explain why in detail in [this article](https://maccou-blog.netlify.app/why-i-use-git-worktrees/).
+
+## 🚫 Never Use Stashes for Meaningful Work
+
+Need to switch branches while developing a feature? **Do not use stashes**, even with meaningful names. Use branches instead—that's what they're for!
+
+Stashes are the best way to lose important information. Git allows unlimited branches, so use them liberally!
+
+## 🔀 Adopt a Clear Branching Strategy
+
+I favor a **PR-based workflow**:
+
+- **🔒 Protected Main Branch:** Direct commits to `main` are forbidden.
+- **🌿 Feature Branches:** Create branches from `main` for each feature.
+- **✅ Pull Requests:** Open PRs to merge features back to `main`.
+- **🤖 Continuous Integration:** CI runs on each PR before merging.
+- **📦 Squash Merging:** Individual commits in feature branches don't matter—they're squashed on merge.
+
+Each PR should follow the [perfect commit](https://simonwillison.net/2022/Oct/29/the-perfect-commit/) rules: include implementation, tests, documentation, and link to an issue. GitHub's feature to create branches directly from issues is excellent for this workflow.
+
+## 🎨 Don't Obsess Over Commit History During Development
+
+Many developers waste time trying to maintain a perfect commit history from the start. In a squashed merge workflow, this is unnecessary—all commits get squashed when the PR merges.
+
+Your development workflow should recognize two distinct phases:
+
+### 🚧 Development Phase
+Commit history is organizational—for you only. Be fuzzy and quick. Don't overthink it.
+
+### ✅ Final Phase
+When done, use `git reset --soft <starting-commit-hash>` and carefully reconstruct your commits. Tools like VSCode or [magit](https://magit.vc/) let you select specific chunks from files for individual commits.
+
+This two-phase approach was heavily inspired by [matklad's workflow](https://matklad.github.io/2024/07/25/git-worktrees.html). The key insight: treat development commits as temporary scaffolding, not permanent architecture.
+
+## Conclusion
+
+My Git workflow prioritizes:
+
+- **🎯 Efficiency:** CLI with aliases beats GUI clicking.
+- **🧹 Cleanliness:** Squash merging keeps history clean.
+- **🔄 Flexibility:** Worktrees and branches over stashes.
+- **🎨 Pragmatism:** Perfect commits at merge time, not during development.
+
+Adopt these practices gradually and adjust to your needs. The goal is to make Git work for you, not against you.
+
+Happy coding!
