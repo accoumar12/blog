@@ -42,7 +42,7 @@ If dealing with a regression bug (something that used to work but now doesn't):
 Lay out different possible causes as a tree structure. Aim for causes that are:
 - Collectively exhaustive (covering all possibilities);
 - Mutually exclusive (distinct from each other).
-This is not always easy, especially at the beginning of a debugging session, but it's essential for clarity.
+This is not always easy, especially at the beginning of a debugging session, but it's crucial to operate as efficiently as possible.
 
 Assign each cause a probability of being the root cause. This helps prioritize which branches to investigate first.
 
@@ -50,7 +50,7 @@ Here is an example of a hypothesis tree for a bug I encountered, where different
 
 ![debug-decision-tree](./debug-decision-tree.png)
 
-For each potential cause, define a concrete method to evaluate it. Sometimes, a single test can evaluate multiple causes simultaneously. For example, in the tree above, Cause 1 and Cause 3 can be evaluated by running a test script directly with the Docker image on the platform server.
+For each potential cause, define a concrete method to evaluate it. Sometimes, a single test can evaluate multiple causes simultaneously. For example, in the tree above, Cause 1 and Cause 3 on the first line can be evaluated by running a test script directly with the Docker image on the platform server.
 
 At each step, you narrow down the potential causes based on the results of your evaluations. This methodical approach helps avoid jumping to conclusions and ensures you consider all possibilities. You should end up with the line or portion of code responsible for the bug !
 
