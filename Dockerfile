@@ -4,7 +4,7 @@ FROM node:18-alpine AS builder
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Copy package files.
 COPY package.json package-lock.json ./
 
 # Install dependencies. npm ci does not work in docker for some reason.
