@@ -36,7 +36,7 @@ const config: GatsbyConfig = {
         externalLinks: [
           {
             name: `Homepage`,
-            url: `https://maccou-portfolio.netlify.app`,
+            url: `https://portfolio.accoumar.fr/`,
           },
         ],
       },
