@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+.cache
+public
+.git
+.github
+.gitignore
+.DS_Store
+README.md
+.claude
