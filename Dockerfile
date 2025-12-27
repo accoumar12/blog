@@ -1,10 +1,10 @@
 # Build stage
 FROM node:18-alpine AS builder
 
-# Set working directory
+# Set working directory.
 WORKDIR /app
 
-# Copy package files
+# Copy package files.
 COPY package.json package-lock.json ./
 
 # Install dependencies. npm ci does not work in docker for some reason.
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine
+FROM nginx:mainline-alpine3.23
 
 # Copy built files from builder stage
 COPY --from=builder /app/public /usr/share/nginx/html
@@ -26,4 +26,4 @@ COPY --from=builder /app/public /usr/share/nginx/html
 EXPOSE 80
 
 # Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]mainline-3.23
