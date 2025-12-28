@@ -8,7 +8,7 @@ const config: GatsbyConfig = {
     // You can overwrite values here that are used for the SEO component
     // You can also add new values here to query them like usual
     // See all options: https://github.com/LekoArts/gatsby-themes/blob/main/themes/gatsby-theme-minimal-blog/gatsby-config.mjs
-    siteTitle: `Martin's log`,
+    siteTitle: `Martin's blog`,
     siteTitleAlt: `Martin ACCOU's personal blog`,
     siteHeadline: `Martin ACCOU's personal blog`,
     siteUrl: `https://maccou-blog.netlify.app/`,
