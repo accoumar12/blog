@@ -26,4 +26,4 @@ COPY --from=builder /app/public /usr/share/nginx/html
 EXPOSE 80
 
 # Start nginx
-CMD ["nginx", "-g", "daemon off;"]mainline-3.23
+CMD ["nginx", "-g", "daemon off;"]
