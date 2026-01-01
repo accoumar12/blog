@@ -8,7 +8,8 @@ const config: GatsbyConfig = {
     // You can overwrite values here that are used for the SEO component
     // You can also add new values here to query them like usual
     // See all options: https://github.com/LekoArts/gatsby-themes/blob/main/themes/gatsby-theme-minimal-blog/gatsby-config.mjs
-    siteTitle: `Martin's blog`,
+    // For some reason siteTitle seems to actually be the name of the author. Indeed, it is used after "by" in the footer.
+    siteTitle: `Martin`,
     siteTitleAlt: `Martin ACCOU's personal blog`,
     siteHeadline: `Martin ACCOU's personal blog`,
     siteUrl: `https://maccou-blog.netlify.app/`,
@@ -59,18 +60,7 @@ const config: GatsbyConfig = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#6B46C1`,
         display: `standalone`,
-        icons: [
-          {
-            src: `/android-chrome-192x192.png`,
-            sizes: `192x192`,
-            type: `image/png`,
-          },
-          {
-            src: `/android-chrome-512x512.png`,
-            sizes: `512x512`,
-            type: `image/png`,
-          },
-        ],
+        icon: `src/images/head.svg`
       },
     },
     {
