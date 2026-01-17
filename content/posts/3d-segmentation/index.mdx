@@ -4,17 +4,19 @@ date: 2025-01-27
 description: How I distilled heuristic knowledge into deep learning models for segmenting CAD designs.
 tags:
   - ML
-  - DL 
-  - 3D 
+  - DL
+  - 3D
   - instance segmentation
 banner: ./sheet_metal_0.png
 ---
-import sheetMetal0 from './sheet_metal_0.png';
-import sheetMetal1 from './sheet_metal_1.png';
-import holes0 from './holes_0.png';
-import holes1 from './holes_1.png';
+
+import sheetMetal0 from "./sheet_metal_0.png";
+import sheetMetal1 from "./sheet_metal_1.png";
+import holes0 from "./holes_0.png";
+import holes1 from "./holes_1.png";
 
 > **TL;DR:**
+>
 > - 🧩 Built a 3D instance segmentation model, crucial for automated cost estimation in CAD manufacturing.
 > - 🔧 Adapted OneFormer3D for CAD designs, using point normals instead of color information.
 > - 📊 The approach achieves robust segmentation with minimal training data, making it viable for industrial applications.
@@ -65,13 +67,13 @@ import holes1 from './holes_1.png';
   </figure>
 </div>
 
-At [D3S](https://d3s.ai/), we're developing **cost estimation models** for [Computer-Aided Design (CAD)](https://en.wikipedia.org/wiki/Computer-aided_design) manufacturing. A crucial part of this process is automatically identifying and measuring design features that drive manufacturing costs - like holes, bends, and surface areas. For [sheet metal](https://en.wikipedia.org/wiki/Sheet_metal) designs in particular, accurate segmentation of one side of the sheet enables automated unfolding and [nesting](https://en.wikipedia.org/wiki/Nesting_(process)) calculations, essential for material cost estimation.
+At [D3S](https://d3s.ai/), we're developing **cost estimation models** for [Computer-Aided Design (CAD)](https://en.wikipedia.org/wiki/Computer-aided_design) manufacturing. A crucial part of this process is automatically identifying and measuring design features that drive manufacturing costs - like holes, bends, and surface areas. For [sheet metal](https://en.wikipedia.org/wiki/Sheet_metal) designs in particular, accurate segmentation of one side of the sheet enables automated unfolding and [nesting](<https://en.wikipedia.org/wiki/Nesting_(process)>) calculations, essential for material cost estimation.
 
 Unlike 3D similarity tasks where pre-trained models often perform well, segmentation requires specialized approaches that understand manufacturing context. The challenge lies in precisely identifying every feature while maintaining robustness across diverse design variations.
 
 ## Method
 
-The development process involved testing multiple approaches before finding an optimal solution:
+The development process involved testing several approaches before finding an optimal solution:
 
 1. **Semantic Segmentation Exploration**:
    - [Mask3D](https://arxiv.org/abs/2210.03105), [PointSAM](https://arxiv.org/abs/2406.17741), and [PTv3](https://arxiv.org/abs/2312.10035) were tested.
@@ -88,7 +90,6 @@ Our experimental process revealed three insights:
 - **CAD-specific adaptations are crucial for effective instance segmentation**. Notably, CAD 3D designs do not have color information, so we used point normals instead.
 - **Dataset curations are essential**. Various curations techniques were implemented to ensure robustness across diverse designs. The model also needs a minimum amount of training data to generalize well (more than 1000 designs).
 - Such 3D instance segmentation methods, initially aimed for outdoor and indoor scenes, **can be effectively adapted to CAD designs part segmentation**.
-
 
 ## Conclusion
 
