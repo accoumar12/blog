@@ -14,8 +14,9 @@ tags:
 
 I recently started using git worktrees after discovering the best practices outlined in [this article](https://matklad.github.io/2024/07/25/git-worktrees.html). Initially, I was uncertain about the true benefits of worktrees compared to simply cloning a repository into multiple folders. Frustrated by the lack of clear online explanations, I decided to write this article to share my findings.
 
+NOTE: I used to default to using git worktrees for everything. However, I've learned that some repositories implicitly assume a single working directory (e.g., to retrieve the current git hash). Now I default to a single working directory and only use git worktrees when I genuinely need multiple branches checked out simultaneously.
 
-## Why Use Multiple Clones Instead of Constantly Switching Branches? 🔄
+## Why Sometimes, Using Multiple Clones Instead of Constantly Switching Branches is needed? 🔄
 
 There are several advantages to maintaining multiple copies of your repository:
 
@@ -27,6 +28,9 @@ There are several advantages to maintaining multiple copies of your repository:
 
 - **📊 Enhanced Diffing Capabilities:**  
   With multiple copies available, you’re not limited to Git's diffing tools. You can leverage your preferred diff utilities, which might offer a more comprehensive or user-friendly comparison experience.
+
+- **🔍 Comparative Development:**  
+  When developing a new feature, I frequently need to compare it against other in-progress branches or the main branch. Having both branches checked out simultaneously makes it much easier to navigate their respective file structures and understand the differences. This is far more efficient than relying on GitHub's online code viewer or constantly switching branches to use Git's compare features.
 
 ## Why Use Git Worktrees instead of Multiple Clones? 🤔
 

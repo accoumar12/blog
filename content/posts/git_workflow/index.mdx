@@ -11,7 +11,7 @@ tags:
 > **TL;DR:**
 > - 💻 Use Git CLI over GUI tools for deeper understanding and flexibility.
 > - ⚡ Leverage terminal aliases to speed up common operations.
-> - 🌳 Use git worktrees for multi-branch workflows.
+> - 🌳 Use git worktrees when actually needed.
 > - 🚫 Never use stashes for meaningful work—use branches instead.
 > - 📦 Adopt squash merging with a PR-based workflow.
 > - ✨ Don't obsess over commit history during development—clean it up later.
@@ -47,15 +47,19 @@ My most-used aliases:
 
 Git's defaults aren't optimal. Take inspiration from [how Git core developers configure Git](https://blog.gitbutler.com/how-git-core-devs-configure-git). Feel free to check out my [.gitconfig](https://github.com/accoumar12/dotfiles/blob/main/.gitconfig) for ideas!
 
-## 🌳 Use Git Worktrees
+## 🌳 Use Git Worktrees When Actually Needed
 
-You should use git worktrees unless you have a compelling reason not to. I explain why in detail in [this article](https://maccou-blog.netlify.app/why-i-use-git-worktrees/).
+I used to default to using git worktrees for everything. However, I've learned that some repositories implicitly assume a single working directory (e.g., to retrieve the current git hash). Now I default to a single working directory and only use git worktrees when I genuinely need multiple branches checked out simultaneously.
+
+There's actually a nice workflow I follow when using git worktrees, which I explain in detail in [this article](https://maccou-blog.netlify.app/why-i-use-git-worktrees/).
 
 ## 🚫 Never Use Stashes for Meaningful Work
 
 Need to switch branches while developing a feature? **Do not use stashes**, even with meaningful names. Use branches instead—that's what they're for!
 
 Stashes are the best way to lose important information. Git allows unlimited branches, so use them liberally!
+
+I tend to use a lot my `gwip` alias to create quick WIP commits. When switching back to the feature branch, I can amend the WIP commit (if really needed) or squash it later.
 
 ## 🔀 Adopt a Clear Branching Strategy
 
@@ -67,7 +71,7 @@ I favor a **PR-based workflow**:
 - **🤖 Continuous Integration:** CI runs on each PR before merging.
 - **📦 Squash Merging:** Individual commits in feature branches don't matter—they're squashed on merge.
 
-Each PR should follow the [perfect commit](https://simonwillison.net/2022/Oct/29/the-perfect-commit/) rules: include implementation, tests, documentation, and link to an issue. GitHub's feature to create branches directly from issues is excellent for this workflow.
+Each PR should follow the [perfect commit](https://simonwillison.net/2022/Oct/29/the-perfect-commit/) rules: include implementation, tests, and documentation. For larger PRs or when there's an existing issue, I link the PR to the issue using [GitHub's linking feature](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue). For smaller changes, a well-written PR description suffices. I also prefix PR titles with emojis to quickly convey the type of change: ✨ for features, 🐛 for bug fixes, ♻️ for refactors, etc.
 
 ## 🎨 Don't Obsess Over Commit History During Development
 
@@ -79,9 +83,9 @@ Your development workflow should recognize two distinct phases:
 Commit history is organizational—for you only. Be fuzzy and quick. Don't overthink it.
 
 ### ✅ Final Phase
-When done, use `git reset --soft <starting-commit-hash>` and carefully reconstruct your commits. Tools like VSCode or [magit](https://magit.vc/) let you select specific chunks from files for individual commits.
+When merging, I typically squash all commits since the PR should be small and focused enough to review as a single unit.
 
-This two-phase approach was heavily inspired by [matklad's workflow](https://matklad.github.io/2024/07/25/git-worktrees.html). The key insight: treat development commits as temporary scaffolding, not permanent architecture.
+However, if you need to preserve a clean commit history within the branch before merging, use `git reset --soft <starting-commit-hash>` to unstage all commits back to your starting point, then carefully reconstruct them. Tools like VSCode or [magit](https://magit.vc/) make this easier by allowing you to stage specific chunks from files into individual commits.
 
 ## Conclusion
 
@@ -89,7 +93,7 @@ My Git workflow prioritizes:
 
 - **🎯 Efficiency:** CLI with aliases beats GUI clicking.
 - **🧹 Cleanliness:** Squash merging keeps history clean.
-- **🔄 Flexibility:** Worktrees and branches over stashes.
+- **🔄 Flexibility:** Branches over stashes.
 - **🎨 Pragmatism:** Perfect commits at merge time, not during development.
 
 Adopt these practices gradually and adjust to your needs. The goal is to make Git work for you, not against you.
